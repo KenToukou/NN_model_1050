@@ -1,10 +1,11 @@
 # coding: utf-8
-import numpy as np
 import matplotlib.pylab as plt
+import numpy as np
 
 
 def step_function(x):
     return np.array(x > 0, dtype=np.int)
+
 
 X = np.arange(-5.0, 5.0, 0.1)
 Y = step_function(X)
