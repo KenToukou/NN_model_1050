@@ -38,6 +38,7 @@ def predict(network, x):
 
 
 x, t = get_data()
+print(x.shape)
 network = init_network()
 
 batch_size = 100  # バッチの数
