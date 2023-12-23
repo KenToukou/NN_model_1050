@@ -2,8 +2,7 @@ import os  # noqa
 import sys  # noqa
 
 import numpy as np
-
-from .functions import (
+from functions import (
     cross_entropy_error,
     numerical_gradient,
     sigmoid,
