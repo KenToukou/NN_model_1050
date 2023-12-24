@@ -1,6 +1,7 @@
 import numpy as np
-from frame_work import BaseLayer
-from functions import cross_entropy_error, soft_max
+
+from .frame_work import BaseLayer
+from .functions import cross_entropy_error, soft_max
 
 
 class Relu(BaseLayer):
@@ -14,7 +15,7 @@ class Relu(BaseLayer):
         return out
 
     def backward(self, d_out):
-        d_out[self.mask] = 0
+        d_out[self._mask] = 0
         dx = d_out
         return dx
 
@@ -77,6 +78,6 @@ class SoftmaxWithLoss(BaseLayer):
         return self._loss
 
     def backward(self, d_out=1):
-        batch_size = self.t.shape[0]  # 教師データのサンプル数
+        batch_size = self._t.shape[0]  # 教師データのサンプル数
         dx = (self._y - self._t) / batch_size
         return dx
