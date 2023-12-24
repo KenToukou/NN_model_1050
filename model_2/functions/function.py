@@ -5,7 +5,7 @@ def sigmoid(x):
     return 1 / (1 + (1 / (np.power(np.e, x))))
 
 
-def sof_max(x):
+def soft_max(x):
     x = x - np.max(x, axis=-1, keepdims=True)  # オーバーフロー対策
     return np.exp(x) / np.sum(np.exp(x), axis=-1, keepdims=True)
 

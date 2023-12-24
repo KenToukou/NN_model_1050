@@ -7,7 +7,7 @@ from functions import (
     numerical_gradient,
     sigmoid,
     sigmoid_grad,
-    sof_max,
+    soft_max,
 )
 
 
@@ -27,7 +27,7 @@ class TwoLayerNet(object):
         a1 = np.dot(x, W1) + b1
         z1 = sigmoid(a1)
         a2 = np.dot(z1, W2) + b2
-        y = sof_max(a2)
+        y = soft_max(a2)
         return y
 
     def loss(self, x, t):
@@ -51,8 +51,8 @@ class TwoLayerNet(object):
         return grads
 
     def gradient(self, x, t):
-        W1, W2 = self.params["W1"], self.params["W2"]
-        b1, b2 = self.params["b1"], self.params["b2"]
+        W1, W2 = self._params["W1"], self._params["W2"]
+        b1, b2 = self._params["b1"], self._params["b2"]
         grads = {}
 
         batch_num = x.shape[0]
@@ -61,7 +61,7 @@ class TwoLayerNet(object):
         a1 = np.dot(x, W1) + b1
         z1 = sigmoid(a1)
         a2 = np.dot(z1, W2) + b2
-        y = sof_max(a2)
+        y = soft_max(a2)
 
         # backward
         dy = (y - t) / batch_num
