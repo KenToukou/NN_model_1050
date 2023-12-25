@@ -77,7 +77,13 @@ class SoftmaxWithLoss(BaseLayer):
         self._loss = cross_entropy_error(y=self._y, t=self._t)
         return self._loss
 
-    def backward(self, d_out=1):
-        batch_size = self._t.shape[0]  # 教師データのサンプル数
-        dx = (self._y - self._t) / batch_size
+    def backward(self, dout=1):
+        batch_size = self._t.shape[0]
+        if self._t.size == self._y.size:  # 教師データがone-hot-vectorの場合
+            dx = (self._y - self._t) / batch_size
+        else:
+            dx = self._y.copy()
+            dx[np.arange(batch_size), self._t] -= 1
+            dx = dx / batch_size
+
         return dx
